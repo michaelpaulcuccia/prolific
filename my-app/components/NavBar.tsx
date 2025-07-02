@@ -21,9 +21,9 @@ const NavBar = () => {
         color: "var(--foreground)",
       }}
     >
-      <div className="flex justify-between items-center px-4 py-3 md:px-40 md:py-[18px]">
+      <div className="relative flex justify-between items-center px-4 py-3 md:px-40 md:py-[18px]">
         {/* Left Icon */}
-        <div className="text-xl">
+        <div className="text-xl z-20">
           <FaReact />
         </div>
 
@@ -59,25 +59,24 @@ const NavBar = () => {
           </Link>
         </div>
 
-        {/* Right side icons */}
-        <div className="flex items-center gap-4">
-          {/* Theme Toggle */}
+        {/* Theme Toggle (right side, always visible) */}
+        <div className="text-xl z-20">
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="text-xl focus:outline-none"
+            className="focus:outline-none"
             style={{ color: "inherit" }}
           >
             {theme === "dark" ? <BsSun /> : <BsMoon />}
           </button>
+        </div>
 
-          {/* Hamburger Icon */}
-          <div
-            className="text-xl md:hidden cursor-pointer"
-            onClick={toggleMenu}
-          >
-            {isOpen ? <FiX /> : <FiMenu />}
-          </div>
+        {/* Hamburger Icon (mobile only, absolutely centered) */}
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:hidden text-xl cursor-pointer z-30"
+          onClick={toggleMenu}
+        >
+          {isOpen ? <FiX /> : <FiMenu />}
         </div>
       </div>
 
